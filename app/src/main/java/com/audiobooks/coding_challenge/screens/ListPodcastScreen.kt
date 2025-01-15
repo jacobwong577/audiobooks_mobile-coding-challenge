@@ -46,7 +46,7 @@ fun <T> SnapshotStateList<T>.newList(newList: List<T>) {
 fun ListPodcastScreen(viewModel: PodcastViewModel, navController: NavHostController) {
     //load the first page items
     viewModel.loadFirstSetOfPodcasts()
-    val data by viewModel.pageResults!!.observeAsState(listOf())
+    val data by viewModel.pageResults.observeAsState(listOf())
     Column {
         val displayList = remember { mutableStateListOf<PodcastEntity>() }
         //replace the list with new loaded data
@@ -71,9 +71,9 @@ fun ListPodcastScreen(viewModel: PodcastViewModel, navController: NavHostControl
                 //try to load more data when it reach the last item of the list.
                 if (it == displayList.size - 1) {
                     viewModel.loadMorePodcasts(displayList.size)
-                    val data by viewModel.pageResults!!.observeAsState(listOf())
-                    if (!data.isEmpty()) {
-                        displayList.addAll(data)
+                    val pageData by viewModel.pageResults.observeAsState(listOf())
+                    if (pageData.isNotEmpty()) {
+                        displayList.addAll(pageData)
                     }
                 }
             }

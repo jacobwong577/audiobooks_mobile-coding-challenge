@@ -18,7 +18,7 @@ class PodcastViewModel(application: Application) : AndroidViewModel(application)
     private val podcastDAO: PodcastDAO
 
     init {
-        podcastDAO = AppDBs.getInstance(application).podcastDao();
+        podcastDAO = AppDBs.getInstance(application).podcastDao()
         loadFirstSetOfPodcasts()
         repository = PodcastRepository(podcastDAO)
         dataResults = repository.dataResult

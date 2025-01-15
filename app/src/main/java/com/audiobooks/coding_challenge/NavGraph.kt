@@ -1,6 +1,5 @@
 package com.audiobooks.coding_challenge
 
-import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -12,7 +11,7 @@ import com.audiobooks.coding_challenge.screens.ListPodcastScreen
 import com.audiobooks.coding_challenge.screens.Screens
 
 @Composable
-fun SetupNav(navController: NavHostController, context: Context) {
+fun SetupNav(navController: NavHostController) {
     //Setup screen navigation and use ListPodcastScreen as the starting screen
     NavHost(navController = navController, startDestination = Screens.ListScreen.route) {
         composable(route = Screens.ListScreen.route) {

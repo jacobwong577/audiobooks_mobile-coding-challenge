@@ -35,14 +35,14 @@ fun DetailScreen(
 ) {
     //find the selected podcast data from the database and display
     viewModel.findPodcastById(podcastIndex)
-    val data by viewModel.dataResults!!.observeAsState(listOf())
-    if (!data.isEmpty()) {
-        showDetail(data = data, viewModel, navController)
+    val data by viewModel.dataResults.observeAsState(listOf())
+    if (data.isNotEmpty()) {
+        ShowDetail(data = data, viewModel, navController)
     }
 }
 
 @Composable
-fun showDetail(
+fun ShowDetail(
     data: List<PodcastEntity>, viewModel: PodcastViewModel, navController: NavHostController
 ) {
     Column {

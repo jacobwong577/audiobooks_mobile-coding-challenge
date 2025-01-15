@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,7 +29,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val db = AppDBs.getInstance(this)
-        val podcastDAO = db.podcastDao();
+        val podcastDAO = db.podcastDao()
         setContent {
             AudiobooksChallengeTheme {
                 Surface(
@@ -40,7 +39,7 @@ class MainActivity : ComponentActivity() {
                 }
                 //setup screen navigation.
                 navController = rememberNavController()
-                SetupNav(navController = navController, this)
+                SetupNav(navController = navController)
             }
         }
         Thread { callListenNotes(podcastDAO) }.start()
@@ -72,7 +71,7 @@ fun callListenNotes(podcastDAO: PodcastDAO): String {
     client.newCall(request).enqueue(object : Callback {
         override fun onFailure(call: Call, e: IOException) {}
         override fun onResponse(call: Call, response: Response) {
-            val outputString = response.body?.string();
+            val outputString = response.body?.string()
             if (outputString != null) {
                 val responseInJSON = JSONObject(outputString)
                 val podcastsJSON = responseInJSON.getJSONArray("podcasts")
